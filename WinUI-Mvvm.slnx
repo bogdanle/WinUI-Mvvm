@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="WinUI-Mvvm/WinUI-Mvvm.vcxproj" Id="e71608d3-5774-44ff-a008-5b45e42f8b9c">
+    <Deploy />
+  </Project>
+</Solution>

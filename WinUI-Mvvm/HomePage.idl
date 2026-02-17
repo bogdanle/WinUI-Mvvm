@@ -1,0 +1,12 @@
+import "HomeViewModel.idl";
+
+namespace WinUI_Mvvm
+{
+    [default_interface]
+    runtimeclass HomePage : Microsoft.UI.Xaml.Controls.Page
+    {
+        HomePage();
+        
+        HomeViewModel ViewModel{ get; };
+    }
+}

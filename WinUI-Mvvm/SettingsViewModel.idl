@@ -1,0 +1,13 @@
+import "Core/BindableBase.idl";
+import "Core/RelayCommand.idl";
+
+namespace WinUI_Mvvm
+{
+    [bindable]
+    [default_interface]
+    runtimeclass SettingsViewModel : BindableBase
+    {
+        SettingsViewModel();
+        
+    }
+}

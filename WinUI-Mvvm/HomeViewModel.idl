@@ -1,0 +1,24 @@
+import "Core/BindableBase.idl";
+import "Core/RelayCommand.idl";
+
+namespace WinUI_Mvvm
+{
+    [bindable]
+    [default_interface]
+    runtimeclass HomeViewModel : BindableBase
+    {
+        HomeViewModel();
+
+        String Email;
+        String Name;
+        Boolean IsBusy;
+        Boolean IsEmailInvalid{ get; };
+        Boolean IsNameInvalid{ get; };
+
+        Boolean IsSuccess;
+        Boolean IsFailure;
+
+        Microsoft.UI.Xaml.Input.ICommand SubmitCommand{ get; };
+        event Windows.Foundation.EventHandler<Boolean> SubmitFinished;
+    }
+}

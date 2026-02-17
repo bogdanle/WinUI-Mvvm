@@ -1,0 +1,11 @@
+namespace WinUI_Mvvm
+{
+    [bindable]
+    [default_interface]
+    unsealed runtimeclass BindableBase : Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+    {
+        BindableBase();
+        
+        protected void NotifyPropertyChanged(String propertyName);
+    }
+}
