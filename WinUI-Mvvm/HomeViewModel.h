@@ -2,6 +2,7 @@
 
 #include "HomeViewModel.g.h"
 
+#include <regex>
 #include "Core/BindableBase.h"
 
 #include <winrt/Microsoft.UI.Xaml.Input.h>
@@ -83,6 +84,7 @@ namespace winrt::WinUI_Mvvm::implementation
         winrt::WinUI_Mvvm::RelayCommand _submitCommand{ nullptr };
         winrt::Microsoft::UI::Dispatching::DispatcherQueue _dispatcher{ nullptr };
         event<EventHandler<bool>> _submitFinishedEvent;
+        std::wregex _emailRegex;
 
         void ValidateForm();
     };

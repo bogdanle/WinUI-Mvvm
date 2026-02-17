@@ -4,7 +4,8 @@
 #include "HomeViewModel.g.cpp"
 #endif
 
-#include <regex>
+#include <chrono>
+#include <thread>
 
 #include "Core/RelayCommand.h"
 
@@ -16,6 +17,9 @@ namespace winrt::WinUI_Mvvm::implementation
             [this](IInspectable const&) { this->OnSubmit(); },
             [this](IInspectable const&) -> bool { return this->CanSubmit(); });
 
+        // Define a regex pattern for email validation
+        _emailRegex = std::wregex(LR"((^[^\s@]+@[^\s@]+\.[^\s@]+$))");
+
         _dispatcher = winrt::Microsoft::UI::Dispatching::DispatcherQueue::GetForCurrentThread();
     }
 
@@ -26,22 +30,30 @@ namespace winrt::WinUI_Mvvm::implementation
         IsFailure(false);
         bool success = false;
 
-        IsBusy(false);
+        co_await winrt::resume_after(std::chrono::seconds(2));
+        success = true; // Simulate a successful submission
 
         // Raise the event
         _submitFinishedEvent(*this, success);
 
-        co_return;
+        _dispatcher.TryEnqueue([this, success]()
+        {
+            IsBusy(false);
+            if (success)
+            {
+                IsSuccess(true);
+            }
+            else
+            {
+                IsFailure(true);
+            }
+        });
     }
 
     void HomeViewModel::ValidateForm()
     {
         // Validate email
-        std::wstring email = _email.c_str();
-
-        // Define a regex pattern for email validation
-        const std::wregex emailRegex(LR"((^[^\s@]+@[^\s@]+\.[^\s@]+$))");
-        _isEmailInvalid = !std::regex_match(email, emailRegex);
+        _isEmailInvalid = !std::regex_match(_email.c_str(), _emailRegex);
 
         // Validate name
         _isNameInvalid = _name.size() < 2;
