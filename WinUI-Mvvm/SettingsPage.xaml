@@ -9,6 +9,11 @@
     mc:Ignorable="d">
 
     <Grid>
-
+        <StackPanel Orientation="Vertical" Margin="5">
+            <TextBlock Text="Choose a theme" Margin="0,0,0,10" />
+            <RadioButton Content="Light" GroupName="Theme" IsChecked="{x:Bind ViewModel.IsLightTheme, Mode=TwoWay}" />
+            <RadioButton Content="Dark" GroupName="Theme" IsChecked="{x:Bind ViewModel.IsDarkTheme, Mode=TwoWay}" />
+            <RadioButton Content="Default" GroupName="Theme" IsChecked="{x:Bind ViewModel.IsDefaultTheme, Mode=TwoWay}" />
+        </StackPanel>
     </Grid>
 </Page>

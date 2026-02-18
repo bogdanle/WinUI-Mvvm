@@ -46,7 +46,7 @@ struct WindowPos
             std::getline(iss, pos.StateString))
         {
             
-            pos.State = SW_NORMAL;            
+            pos.State = SW_NORMAL;
             if (pos.StateString == L"Minimized")
             {
                 pos.State = SW_MINIMIZE;
@@ -54,7 +54,11 @@ struct WindowPos
             else if (pos.StateString == L"Maximized")
             {
                 pos.State = SW_MAXIMIZE;
-            }                
+            }
+            else if (pos.StateString == L"Hidden")
+            {                
+                pos.State = SW_HIDE;
+            }
 
             return pos;
         }

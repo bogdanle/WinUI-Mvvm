@@ -1,9 +1,12 @@
+import "SettingsViewModel.idl";
+
 namespace WinUI_Mvvm
 {
     [default_interface]
     runtimeclass SettingsPage : Microsoft.UI.Xaml.Controls.Page
     {
         SettingsPage();
-        Int32 MyProperty;
+        
+        SettingsViewModel ViewModel{ get; };
     }
 }

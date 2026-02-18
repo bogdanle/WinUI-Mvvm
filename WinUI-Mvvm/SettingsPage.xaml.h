@@ -6,14 +6,13 @@ namespace winrt::WinUI_Mvvm::implementation
 {
     struct SettingsPage : SettingsPageT<SettingsPage>
     {
-        SettingsPage()
-        {
-            // Xaml objects should not call InitializeComponent during construction.
-            // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-        }
+        SettingsPage();     
 
-        int32_t MyProperty();
-        void MyProperty(int32_t value);
+        WinUI_Mvvm::SettingsViewModel ViewModel() const { return _viewModel; }
+        void ViewModel(WinUI_Mvvm::SettingsViewModel const& value) { _viewModel = value; }
+
+    private:
+        WinUI_Mvvm::SettingsViewModel _viewModel{ nullptr };
     };
 }
 

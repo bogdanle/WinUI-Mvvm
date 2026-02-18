@@ -15,6 +15,8 @@ using namespace Microsoft::UI::Windowing;
 
 namespace winrt::WinUI_Mvvm::implementation
 {
+    App* App::_current = nullptr;
+
     /// <summary>
     /// Initializes the singleton application object. This is the first line of authored code
     /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -23,6 +25,8 @@ namespace winrt::WinUI_Mvvm::implementation
     {
         // Xaml objects should not call InitializeComponent during construction.
         // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
+
+        _current = this;
 
 #if defined _DEBUG && !defined DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION
         UnhandledException([](IInspectable const&, UnhandledExceptionEventArgs const& e)

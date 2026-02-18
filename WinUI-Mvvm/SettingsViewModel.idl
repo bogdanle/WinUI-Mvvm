@@ -8,6 +8,9 @@ namespace WinUI_Mvvm
     runtimeclass SettingsViewModel : BindableBase
     {
         SettingsViewModel();
-        
+
+        Boolean IsLightTheme;
+        Boolean IsDarkTheme;
+        Boolean IsDefaultTheme;
     }
 }

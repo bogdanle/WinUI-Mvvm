@@ -13,6 +13,7 @@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <microsoft.ui.xaml.window.h>
 
+#include "resource.h"
 #include "Helpers/WindowHelper.h"
 
 using namespace winrt;
@@ -146,12 +147,13 @@ namespace winrt::WinUI_Mvvm::implementation
             _initialized = true;            
 
             HWND hwnd = GetWindowHandle();
-            auto pos = WindowPos::Parse(L"0,0,800,600,1");
+            auto pos = WindowPos::Parse(L"0,0,800,600,Normal");
             if (pos.has_value())
             {
                 auto p = pos.value();
                 WindowHelper::SetWindowPos(hwnd, p.Left, p.Top, p.Width, p.Height, p.State);
-                WindowHelper::CenterWindow(hwnd);
+                WindowHelper::CenterWindow(hwnd, p.Width, p.Height);
+                WindowHelper::SetWindowIcon(hwnd, IDI_APP_ICON);
             }
 
             navigationView().SelectedItem(navigationView().MenuItems().GetAt(0));
